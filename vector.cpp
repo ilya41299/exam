@@ -103,5 +103,33 @@ public:
 		capacity_ = 0;
 	}
 
-//  Метод вставки элемента в произвольное место в массиве
+void insert(std::size_t pos, const T& value)
+{
+    if (capacity_ == 0)
+        capacity_ = 1;
+    while (pos + 1 > capacity_)
+    {
+        capacity_ *= 2;
+    }
+    T* mas;
+    mas = new T[capacity_];
+    ++size_;
+    for (std::size_t i = 0; i < capacity_; ++i)
+    {
+        if (i < pos)
+        {
+            mas[i] = elements_[i];
+        }
+        else if (i == pos)
+        {
+            mas[i] = value;
+        }
+        else
+        {
+            mas[i] = elements_[i - 1];
+        }
+    }
+    delete[] elements_;
+    elements_ = mas;
+}
 };
