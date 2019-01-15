@@ -14,7 +14,7 @@ public:
         mutex.lock();
     }
 
-    lock_guard(T& mut, adopt_lock_t)
+    lock_guard(T& mut, std::adopt_lock_t)
         : mutex(mut)
     {
     }
