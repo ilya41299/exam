@@ -95,13 +95,14 @@ public:
 			ptr_ = nullptr;
 			return point;
 		}
+		
 		T * point = ptr_;
 		delete ptr_;
 		delete count;
 		count = nullptr;
 		ptr_ = nullptr;
 	    return point;
-	}
+	}*/
 
     void swap(shared_ptr& shared)
     {
