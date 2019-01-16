@@ -85,7 +85,7 @@ public:
         return *this;
     }
 
-    T* release() 
+    /*T* release() 
 	{
 		if (count && --*count)
 		{
