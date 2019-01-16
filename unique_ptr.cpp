@@ -21,8 +21,9 @@ public:
 
 	T * release() 
 	{
+		T * pointer = ptr_;
 		ptr_ = nullptr;
-		return ptr_;
+		return pointer;
 	}
 	void swap(unique_ptr<T> &other) 
 	{ std::swap(other.ptr_, ptr_); }
