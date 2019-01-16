@@ -4,11 +4,8 @@ class unique_ptr {
 
 	T * ptr_;
 public:
-	unique_ptr() {
-		if (!ptr_) {
-			ptr_ = new T;
-		}
-	}
+	unique_ptr() 
+        { ptr_ =nullptr; }
 	~unique_ptr() {if(ptr_) delete ptr_; }
 
 	unique_ptr(unique_ptr<T> && ptr)
@@ -44,13 +41,14 @@ public:
 
 	T * get() 
 	{ return ptr_; }
-
-	//,????
-  unique make_unique() 
-	{
-
-	}
 };
+
+template<typename T, typename... Args> 
+unique_ptr<T> make_unique(Args&&... args) 
+{ 
+return unique_ptr<T>(new T(std::forward<Args>(args)...)); 
+}
+
 
 int main() 
 {
