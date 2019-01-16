@@ -14,7 +14,7 @@ public:
         mutex.lock();
     }
 //adopt_lock_t с std или без???
-    lock_guard(T& mut, std::adopt_lock_t)
+    lock_guard(T& mut, std::adopt_lock)
         : mutex(mut)
     {
     }
