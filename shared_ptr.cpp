@@ -85,20 +85,23 @@ public:
         return *this;
     }
 
-    T* release()
-    {
-        if (--*count)
-        {
-            count = nullptr;
-            ptr_ = nullptr;
-            return ptr_;
-        }
-        delete ptr_;
-        delete count;
-        count = nullptr;
-        ptr_ = nullptr;
-        return ptr_;
-    }
+    T* release() 
+	{
+		if (count && --*count)
+		{
+			T * point = new T;
+			point = ptr_;
+			count = nullptr;
+			ptr_ = nullptr;
+			return point;
+		}
+		T * point = ptr_;
+		delete ptr_;
+		delete count;
+		count = nullptr;
+		ptr_ = nullptr;
+	    return point;
+	}
 
     void swap(shared_ptr& shared)
     {
