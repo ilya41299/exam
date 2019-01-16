@@ -22,3 +22,10 @@ public:
 
 	 // TODO make_scoped
 };
+
+int main()
+{
+	int *A = new int (5);
+	scoped_ptr<int> ptr = A;
+	std::cout << *ptr;
+}
