@@ -30,7 +30,6 @@ public:
         if (lg.try_lock())
         {
             Queue.pop();
-            lg.unlock();
             return true;
         }
         return false;
