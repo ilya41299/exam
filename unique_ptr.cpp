@@ -5,14 +5,14 @@ class unique_ptr {
 	T * ptr_;
 public:
 	unique_ptr() 
-        { ptr_ =nullptr; }
+        { ptr_ = nullptr; }
 	~unique_ptr() {if(ptr_) delete ptr_; }
 
 	unique_ptr(unique_ptr<T> && ptr)
 	{ std::swap(ptr, ptr_); }
 
-	unique_ptr<T> & operator=(unique_ptr<T> && ptr)
-	{ std::swap(ptr, ptr_); }
+	unique_ptr<T> & operator=(unique_ptr<T> && Uptr)
+	{ std::swap(Uptr.ptr_, ptr_); }
 
 	void reset(T * ptr = nullptr) 
 	{ ptr_ = ptr; }
