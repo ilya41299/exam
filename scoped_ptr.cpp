@@ -19,9 +19,13 @@ public:
 
 	T * get() 
 	{ return ptr_; }
-
-	 // TODO make_scoped
 };
+
+template<typename T, typename... Args> 
+scoped_ptr<T> make_scoped(Args&&... args) 
+{ 
+return scoped_ptr<T>(new T(std::forward<Args>(args)...)); 
+}
 
 int main()
 {
