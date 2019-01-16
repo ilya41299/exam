@@ -1,7 +1,6 @@
 
 template <typename T>
 class unique_ptr {
-
 	T * ptr_;
 public:
 	unique_ptr() 
