@@ -8,8 +8,8 @@ public:
         { ptr_ = nullptr; }
 	~unique_ptr() {if(ptr_) delete ptr_; }
 
-	unique_ptr(unique_ptr<T> && ptr)
-	{ std::swap(ptr, ptr_); }
+	unique_ptr(unique_ptr<T> && Uptr)
+	{ std::swap(Uptr.ptr_, ptr_); }
 
 	unique_ptr<T> & operator=(unique_ptr<T> && Uptr)
 	{ std::swap(Uptr.ptr_, ptr_); }
