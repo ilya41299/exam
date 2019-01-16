@@ -128,5 +128,6 @@ int main()
     std::cout << My_ptr1.use_count();
     shared_ptr<int> My_ptr2 = My_ptr1;
     std::cout << My_ptr1.use_count();
+    //12
     return 0;
 }
