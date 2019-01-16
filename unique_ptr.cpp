@@ -12,7 +12,10 @@ public:
 	{ std::swap(Uptr.ptr_, ptr_); }
 
 	unique_ptr<T> & operator=(unique_ptr<T> && Uptr)
-	{ std::swap(Uptr.ptr_, ptr_); }
+	{ 
+		std::swap(Uptr.ptr_, ptr_);
+		return *this;
+	}
 
 	void reset(T * ptr = nullptr) 
 	{ ptr_ = ptr; }
