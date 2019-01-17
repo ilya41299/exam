@@ -9,9 +9,10 @@ class  SafeStack
 	std::stack<T> Stack;
 public:
 	SafeStack() {}
-	T Pop() 
+	T Pop()
 	{
 		std::lock_guard<std::mutex> lg(Mutex);
+		if (Stack.empty()) throw empty_stack();
 		T temp = Stack.top();
 		Stack.pop();
 		return temp;
@@ -25,7 +26,7 @@ public:
 	bool TryPop()
 	{
 		std::unique_lock<std::mutex> lg(Mutex, std::defer_lock);
-		if (lg.try_lock()) 
+		if (lg.try_lock() && !Stack.empty())
 		{
 			Stack.pop();
 			return true;
