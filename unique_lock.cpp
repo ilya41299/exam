@@ -36,6 +36,7 @@ public:
 	unique_lock(Mutex& m, std::defer_lock_t t) noexcept 
 	{
 		m_ = &m;
+		is_lock = false;
 	}
 
 	unique_lock(Mutex& m, std::adopt_lock_t t) 
