@@ -15,6 +15,7 @@ public:
     T Pop()
     {
         std::lock_guard<std::mutex> lg(Mutex);
+        if(Queue.empty()) throw std::logic_error "empty_Queue";
         T temp = Queue.front();
         Queue.pop();
         return temp;
@@ -26,8 +27,9 @@ public:
     }
     bool TryPop()
     {
-        std::unique_lock<std::mutex> lg(Mutex, std::defer_lock);
-        if (lg.try_lock())
+        std::defer_lock t;
+        std::unique_lock<std::mutex> lg(Mutex, t);
+        if (lg.try_lock() && !Queue.empty())
         {
             Queue.pop();
             return true;
