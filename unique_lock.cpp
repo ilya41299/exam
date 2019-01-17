@@ -17,6 +17,7 @@ public:
 		{
 			(*m_).unlock();
 			is_lock = false;
+			m_ = nullptr;
 		}
 	}
 
@@ -61,6 +62,7 @@ public:
 	{
 		(*m_)=other.m_;
 		is_lock = other.is_lock;
+		return * this;
 	}
 };
 
