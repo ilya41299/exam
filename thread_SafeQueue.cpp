@@ -27,7 +27,7 @@ public:
     }
     bool TryPop()
     {
-        std::defer_lock t;
+        std::defer_lock_t t;
         std::unique_lock<std::mutex> lg(Mutex, t);
         if (lg.try_lock() && !Queue.empty())
         {
