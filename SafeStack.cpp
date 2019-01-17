@@ -12,7 +12,7 @@ public:
 	T Pop()
 	{
 		std::lock_guard<std::mutex> lg(Mutex);
-		if (Stack.empty()) throw empty_stack();
+		if (Stack.empty()) throw std::logic_error "empty stack";
 		T temp = Stack.top();
 		Stack.pop();
 		return temp;
@@ -25,7 +25,8 @@ public:
 	}
 	bool TryPop()
 	{
-		std::unique_lock<std::mutex> lg(Mutex, std::defer_lock);
+		std::defer_lock_t t;
+		std::unique_lock<std::mutex> lg(Mutex, t);
 		if (lg.try_lock() && !Stack.empty())
 		{
 			Stack.pop();
